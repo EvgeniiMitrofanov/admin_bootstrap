@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table th, table td, form {
+            padding: 10px 5px;
+            font-size: 14px;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+        th {
+            background-color: #4caf50;
+        }
+        button {
+            padding: 10px;
+            background: #DCDCDC;
+            border-style: solid;
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th th:width="50" >Id</th>
+        <th th:width="150" >Name</th>
+        <th th:width="150" >Surname</th>
+        <th th:width="200" >E-mail</th>
+        <th th:width="200" >Password</th>
+        <th th:width="50" style="background-color:#FFFFFF; border-style:none;"> </th>
+    </tr>
+    <tr th:object="${user}">
+        <td th:text="${user.id}">Id</td>
+        <td th:text="${user.getUsername()}">Name</td>
+        <td th:text="${user.getLastName()}">Surname</td>
+        <td th:text="${user.getMail()}">E-mail</td>
+        <td th:text="${user.getPassword()}">E-mail</td>
+        <td style="background-color:#FFFFFF; border-style:none;">
+            <form style="background-color:#FFFFFF; border-style:none;" th:method="GET" th:action="@{/logout}">
+                <button type="submit">Logout</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+</body>
+</html>

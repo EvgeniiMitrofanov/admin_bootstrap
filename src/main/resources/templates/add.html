@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new user</title>
+  <style>
+    table th, table td, input {
+      padding: 10px 5px;
+      font-size: 14px;
+      border-style: solid;
+      border-width: 1px;
+      text-align: center;
+    }
+    label {
+      font-size: 14px;
+    }
+    th {
+      background-color: #4caf50;
+    }
+    button {
+      padding: 10px;
+      background: #DCDCDC;
+      border-style: solid;
+      border-width: 2px;
+    }
+  </style>
+</head>
+<body>
+<br>
+<form action="#" th:method="POST" th:action="@{/admin}" th:object="${user}">
+  <table>
+    <tr>
+      <td>
+        <label for="firstName">Enter name</label>
+        <p><input type="text" th:field="*{username}" id="firstName" placeholder="name"/></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="lastName">Enter surname</label>
+        <p><input type="text" th:field="*{lastName}" id="lastName" placeholder="last name"/></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="mail">Enter e-mail</label>
+        <p><input type="text" th:field="*{mail}" id="Mail"/></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="pw">Enter password:</label>
+        <p><input type="password" required th:field="*{password}" id="pw" placeholder="password"></p>
+      </td>
+    </tr>
+    <br>
+    <br>
+    Select roles of the user:
+    <p>
+      <input type="checkbox" id="user" name="roles" value="1" checked><label for="user"> User</label>
+      <br/>
+      <input type="checkbox" id="admin" name="roles" value="2"><label for="admin"> Admin </label>
+    </p>
+    <tr>
+      <td style="background-color:#FFFFFF; border-style:none;">
+        <form style="background-color:#FFFFFF; border-style:none;">
+          <input type="submit" value="Add new user"/>
+        </form>
+      </td>
+    </tr>
+  </table>
+</form>
+<form th:method="POST" th:action="@{/logout}">
+  <button type="submit">Log Out</button>
+</form>
+</body>
+</html>

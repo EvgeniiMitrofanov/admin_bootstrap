@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    <style>
+        table th, table td, form {
+            padding: 10px 5px;
+            font-size: 14px;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+        th {
+            background-color: #4caf50;
+        }
+        button {
+            padding: 10px;
+            background: #DCDCDC;
+            border-style: solid;
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td style="background-color:#FFFFFF; border-style:none;">
+            <button onclick="window.location.href = '/admin/add';"> Add new user </button>
+        </td>
+        <td style="background-color:#FFFFFF; border-style:none;">
+            <form style="background-color:#FFFFFF; border-style:none;" th:method="POST" th:action="@{/logout}">
+                <button type="submit">Logout</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<table>
+    <thead>
+    <tr>
+        <th th:width="50" >Id</th>
+        <th th:width="150" >Name</th>
+        <th th:width="150" >Surname</th>
+        <th th:width="200" >E-mail</th>
+        <th th:width="200" >Password</th>
+        <th th:width="200" >Role</th>
+        <th th:width="50" style="background-color:#FFFFFF; border-style:none;"> </th>
+        <th th:width="50" style="background-color:#FFFFFF; border-style:none;"> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user, state : ${userList}" th:with="url = @{/admin/{id}(id=${user.getId()})}">
+        <td th:text="${user.getId()}">Id</td>
+        <td th:text="${user.getUsername()}">Name</td>
+        <td th:text="${user.getLastName()}">Surname</td>
+        <td th:text="${user.getMail()}">E-mail</td>
+        <td th:text="${user.getPassword()}">Password</td>
+        <td th:text="${user.getAuthorities()}">Role</td>
+        <td style="background-color:#FFFFFF; border-style:none;">
+            <form style="background-color:#FFFFFF; border-style:none;" th:method="GET"  th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                <input type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td style="background-color:#FFFFFF; border-style:none;">
+            <form style="background-color:#FFFFFF; border-style:none;" th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
